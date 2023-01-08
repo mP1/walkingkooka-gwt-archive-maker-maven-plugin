@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>walkingkooka</groupId>
-    <artifactId>walkingkooka-java-shader</artifactId>
+    <artifactId>walkingkooka-gwt-archive-maker-maven-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
