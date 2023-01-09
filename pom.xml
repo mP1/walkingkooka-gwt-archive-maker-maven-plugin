@@ -39,14 +39,14 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:https://github.com/mP1/walkingkooka-java-shader.git</connection>
-        <developerConnection>scm:git:git@github.com:mP1/walkingkooka-java-shader.git</developerConnection>
-        <url>https://github.com/mP1/walkingkooka-java-shader</url>
+        <connection>scm:git:https://github.com/mP1/walkingkooka-gwt-archive-maker-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:mP1/walkingkooka-gwt-archive-maker-maven-plugin.git</developerConnection>
+        <url>https://github.com/mP1/walkingkooka-gwt-archive-maker-maven-plugin</url>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/mP1/walkingkooka-java-shader/issues</url>
+        <url>https://github.com/mP1/walkingkooka-gwt-archive-maker-maven-plugin/issues</url>
     </issueManagement>
 
     <repositories>
