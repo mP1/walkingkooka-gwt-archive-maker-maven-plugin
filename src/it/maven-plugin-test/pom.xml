@@ -25,7 +25,7 @@
                         <configuration>
                             <!-- all paths are the directory: /$repo-base/target/ -->
                             <input>../../../walkingkooka-1.0-SNAPSHOT.jar</input>
-                            <output>../../../target/walkingkooka-gwt2.jar</output>
+                            <output>../../../target/walkingkooka-gwt-1.0-SNAPSHOT.jar</output>
                             <pom-file>../../../test-walkingkooka-gwt-pom.xml</pom-file>
                         </configuration>
                     </execution>
