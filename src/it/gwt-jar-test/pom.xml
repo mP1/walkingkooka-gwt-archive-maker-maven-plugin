@@ -5,7 +5,6 @@
     <groupId>walkingkooka</groupId>
     <artifactId>walkingkooka-gwt-archive-maker-maven-plugin-gwt-jar-test</artifactId>
     <version>1.0</version>
-<!--    <packaging>jar</packaging>-->
     <packaging>gwt-lib</packaging>
     <description>A basic test that invokes some of the repackaged jar APIs</description>
 
