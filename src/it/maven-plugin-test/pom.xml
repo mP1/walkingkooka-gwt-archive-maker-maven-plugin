@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>walkingkooka</groupId>
+    <artifactId>walkingkooka-gwt-archive-maker-maven-plugin-gwt-maven-plugin-test</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <description>Run the maven plugin</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>@project.groupId@</groupId>
+                <artifactId>@project.artifactId@</artifactId>
+                <version>@project.version@</version>
+                <executions>
+                    <execution>
+                        <id>make walkingkooka-gwt</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <!-- all paths are the directory: /$repo-base/target/ -->
+                            <input>../../../walkingkooka-1.0-SNAPSHOT.jar</input>
+                            <output>../../../target/walkingkooka-gwt2.jar</output>
+                            <pom-file>../../../test-walkingkooka-gwt-pom.xml</pom-file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- skip final jar archive create, slight build speedup -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                        <configuration>
+                            <finalName>unwanted</finalName>
+                            <classifier>unwanted</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

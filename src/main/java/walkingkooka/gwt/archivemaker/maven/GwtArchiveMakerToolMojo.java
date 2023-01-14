@@ -28,7 +28,7 @@ import java.io.File;
 /**
  * A plugin that packages a walkingkooka J2CL archive into a correct GWT archive.
  */
-@Mojo(name = "makeGwtArchive", requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
+@Mojo(name = "build", requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class GwtArchiveMakerToolMojo extends AbstractMojo {
 
     /**
@@ -36,7 +36,7 @@ public class GwtArchiveMakerToolMojo extends AbstractMojo {
      */
     @Parameter(
             required = true,
-            property = "input"
+            alias = "input"
     )
     private File input;
 
@@ -45,7 +45,7 @@ public class GwtArchiveMakerToolMojo extends AbstractMojo {
      */
     @Parameter(
             required = true,
-            property = "output"
+            alias = "output"
     )
     private File output;
 
@@ -54,7 +54,7 @@ public class GwtArchiveMakerToolMojo extends AbstractMojo {
      */
     @Parameter(
             required = true,
-            property = "pom-file"
+            alias = "pom-file"
     )
     private File pomFile;
 
@@ -67,7 +67,7 @@ public class GwtArchiveMakerToolMojo extends AbstractMojo {
                     this.pomFile.toPath()
             );
         } catch (final Exception cause) {
-            throw new MojoFailureException("Gwt archive maker failed" + cause.getMessage(), cause);
+            throw new MojoFailureException("Gwt archive maker \"build\" failed: " + cause.getMessage(), cause);
         }
     }
 }

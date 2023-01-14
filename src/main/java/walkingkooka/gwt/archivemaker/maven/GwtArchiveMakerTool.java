@@ -79,6 +79,13 @@ public final class GwtArchiveMakerTool {
     static GwtArchiveMakerTool make(final Path archiveIn,
                                     final Path archiveOut,
                                     final Path pom) throws Exception {
+        if(false == archiveIn.toFile().exists()) {
+            throw new IllegalArgumentException("Unable to find input *.jar file: " + archiveIn.toAbsolutePath());
+        }
+        if(!pom.toFile().exists()) {
+            throw new IllegalArgumentException("Unable to find replacement POM.XML for built jar file: " + archiveIn.toAbsolutePath());
+        }
+
         return new GwtArchiveMakerTool(
                 archiveIn,
                 archiveOut,
