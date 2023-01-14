@@ -24,6 +24,7 @@
     <groupId>walkingkooka</groupId>
     <artifactId>walkingkooka-gwt-archive-maker-maven-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
 
     <properties>
         <maven.compiler.source>1.9</maven.compiler.source>
@@ -216,6 +217,20 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven.version}</version>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
@@ -255,6 +270,7 @@
                             <version>1.0-SNAPSHOT</version>
                             <packaging>jar</packaging>
                             <file>target/test-walkingkooka-gwt-1.0-SNAPSHOT.jar</file>
+                            <localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
                         </configuration>
                     </execution>
                 </executions>
@@ -267,7 +283,9 @@
                 <executions>
                     <execution>
                         <goals>
+                            <goal>install</goal>
                             <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
                     </execution>
                 </executions>

@@ -5,8 +5,8 @@
     <groupId>walkingkooka</groupId>
     <artifactId>walkingkooka-gwt-archive-maker-maven-plugin-gwt-jar-test</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
-
+<!--    <packaging>jar</packaging>-->
+    <packaging>gwt-lib</packaging>
     <description>A basic test that invokes some of the repackaged jar APIs</description>
 
     <properties>
@@ -20,11 +20,13 @@
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <version>${gwt.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
             <version>${gwt.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- this must match the groupId in the file in the repo root -->
@@ -65,9 +67,10 @@
                 <extensions>true</extensions>
                 <configuration>
                     <failOnError>true</failOnError>
-                    <moduleName>test.TestGwtSuite</moduleName>
+                    <moduleName>test.Test</moduleName>
                     <sourceLevel>1.8</sourceLevel>
                     <logLevel>DEBUG</logLevel>
+                    <style>PRETTY</style>
                 </configuration>
             </plugin>
         </plugins>
