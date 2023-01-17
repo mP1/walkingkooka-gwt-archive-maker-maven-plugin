@@ -52,7 +52,7 @@ final class JarArchiveFileEntry {
             throw new IllegalArgumentException("Path must not begin with '/' but was " + CharSequences.quoteAndEscape(path));
         }
 
-        this.moved = !this.path.equals(path);
+        this.moved = true;
         this.path = path;
         this.lastModified = System.currentTimeMillis();
     }
