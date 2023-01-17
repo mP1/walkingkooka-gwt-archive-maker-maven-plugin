@@ -324,7 +324,7 @@ public final class GwtArchiveMakerTool {
                                 final String path = f.path();
 
                                 final String base;
-                                if (path.endsWith(".java")) {
+                                if (!fromPackage.equals(toPackage) && path.endsWith(".java")) {
                                     base = superDirectory + "/";
                                 } else {
                                     base = "";
