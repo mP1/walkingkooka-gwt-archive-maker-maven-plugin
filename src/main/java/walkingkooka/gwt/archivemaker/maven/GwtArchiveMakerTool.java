@@ -383,10 +383,9 @@ public final class GwtArchiveMakerTool {
                                  final String publicOutput) {
         this.files.stream()
                 .filter(f -> publicFiles.test(f.path()))
-                .map(f -> {
-                    f.setPath(publicOutput + "/" + f.path());
-                    return f;
-                });
+                .forEach(f ->
+                        f.setPath(publicOutput + "/" + f.path())
+                );
     }
 
     /**
