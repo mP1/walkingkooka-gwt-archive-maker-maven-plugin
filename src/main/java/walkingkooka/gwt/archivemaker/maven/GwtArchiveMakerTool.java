@@ -44,7 +44,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -316,22 +315,41 @@ public final class GwtArchiveMakerTool {
                     .filter(f -> !f.hasMoved())
                     .filter(f -> {
                         final String path = f.path();
-                        return path.startsWith(fromDirectory) &&
-                                (
-                                        path.endsWith(".class") || path.endsWith(".java")
-                                );
+                        return path.startsWith(fromDirectory) && path.endsWith(".java");
                     })
                     .forEach(f -> {
                                 final String path = f.path();
 
                                 final String base;
-                                if (!fromPackage.equals(toPackage) && path.endsWith(".java")) {
+                                if (!fromPackage.equals(toPackage)) {
                                     base = superDirectory + "/";
                                 } else {
                                     base = "";
                                 }
 
                                 final String toDirectory = base + toPackage.replace('.', '/');
+                                f.setPath(
+                                        toDirectory + path.substring(fromDirectory.length())
+                                );
+                            }
+                    );
+
+            // only try and move files that havent been moved before
+            this.files.stream()
+                    .filter(f -> !f.hasMoved())
+                    .filter(f -> {
+                        final String path = f.path();
+                        return path.startsWith(fromDirectory) && path.endsWith(".class");
+                    })
+                    .forEach(f -> {
+                                final String path = f.path();
+
+                                final String base;
+                                if (!fromPackage.equals(toPackage)) {
+                                    f.setContent(null);
+                                }
+
+                                final String toDirectory = toPackage.replace('.', '/');
                                 f.setPath(
                                         toDirectory + path.substring(fromDirectory.length())
                                 );
@@ -353,21 +371,6 @@ public final class GwtArchiveMakerTool {
                                         shadings
                                 )
                 );
-            }
-
-            if (path.endsWith(".class")) {
-                final byte[] before = entry.content();
-                final byte[] after = JavaShaders.classFilePackageShader()
-                        .apply(
-                                before,
-                                shadings
-                        );
-                // if a *.class file was shaded, mark it for deletion.
-                if (!Arrays.equals(before, after)) {
-                    entry.setContent(
-                            null
-                    );
-                }
             }
         }
     }
