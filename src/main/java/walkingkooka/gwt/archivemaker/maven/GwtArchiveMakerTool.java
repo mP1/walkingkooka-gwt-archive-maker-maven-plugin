@@ -44,6 +44,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -355,13 +356,18 @@ public final class GwtArchiveMakerTool {
             }
 
             if (path.endsWith(".class")) {
-                entry.setContent(
-                        JavaShaders.classFilePackageShader()
-                                .apply(
-                                        entry.content(),
-                                        shadings
-                                )
-                );
+                final byte[] before = entry.content();
+                final byte[] after = JavaShaders.classFilePackageShader()
+                        .apply(
+                                before,
+                                shadings
+                        );
+                // if a *.class file was shaded, mark it for deletion.
+                if (!Arrays.equals(before, after)) {
+                    entry.setContent(
+                            null
+                    );
+                }
             }
         }
     }
@@ -476,12 +482,18 @@ public final class GwtArchiveMakerTool {
         try (final FileOutputStream jarFile = new FileOutputStream(path.toFile())) {
             try (final JarOutputStream jar = new JarOutputStream(jarFile, this.manifest)) {
                 for (final JarArchiveFileEntry entry : this.files) {
+
+                    // shaded class files will have a NULL content, dont write them back out.
+                    final byte[] content = entry.content();
+                    if(null == content) {
+                        continue;
+                    }
                     final JarEntry targetJarFileEntry = new JarEntry(entry.path());
 
                     // write the file lastModified and then its content.
                     targetJarFileEntry.setTime(entry.lastModified());
                     jar.putNextEntry(targetJarFileEntry);
-                    jar.write(entry.content());
+                    jar.write(content);
                     jar.closeEntry();
                 }
 
