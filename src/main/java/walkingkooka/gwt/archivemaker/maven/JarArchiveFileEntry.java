@@ -72,7 +72,8 @@ final class JarArchiveFileEntry {
     private long lastModified;
 
     byte[] content() {
-        return this.content.clone();
+        final byte[] content = this.content;
+        return null != content ? content.clone() : null;
     }
 
     void setContent(final byte[] content) {
