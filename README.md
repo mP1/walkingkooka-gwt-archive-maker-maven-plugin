@@ -1,4 +1,6 @@
 # walkingkooka-gwt-archive-maker-maven-plugin
+![](https://tokei.rs/b1/github/mP1/walkingkooka-gwt-archive-maker-maven-plugin)
+
 A maven plugin and command line tool that creates a maven jar intended for gwt from my other repos.
 
 ## Purpose
