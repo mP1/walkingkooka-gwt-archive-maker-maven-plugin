@@ -48,7 +48,7 @@ final class JarArchiveFileEntry {
     void setPath(final String path) {
         CharSequences.failIfNullOrEmpty(path, "path");
 
-        if(path.startsWith("/")) {
+        if (path.startsWith("/")) {
             throw new IllegalArgumentException("Path must not begin with '/' but was " + CharSequences.quoteAndEscape(path));
         }
 
