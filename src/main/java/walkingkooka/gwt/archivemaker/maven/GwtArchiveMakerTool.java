@@ -79,10 +79,10 @@ public final class GwtArchiveMakerTool {
     static GwtArchiveMakerTool make(final Path archiveIn,
                                     final Path archiveOut,
                                     final Path pom) throws Exception {
-        if(false == archiveIn.toFile().exists()) {
+        if (false == archiveIn.toFile().exists()) {
             throw new IllegalArgumentException("Unable to find input *.jar file: " + archiveIn.toAbsolutePath());
         }
-        if(!pom.toFile().exists()) {
+        if (!pom.toFile().exists()) {
             throw new IllegalArgumentException("Unable to find replacement POM.XML for built jar file: " + archiveIn.toAbsolutePath());
         }
 
@@ -133,11 +133,11 @@ public final class GwtArchiveMakerTool {
                     case J2clArtifact.CLASSPATH_REQUIRED_FILE:
                     case J2clArtifact.IGNORED_DEPENDENCY_FILE:
                     case J2clArtifact.JAVASCRIPT_SOURCE_REQUIRED_FILE:
-                            // ignore these files...
-                            break;
-                        case J2clArtifact.IGNORED_FILES:
-                            ignoreFiles = globPattern(content);
-                            break;
+                        // ignore these files...
+                        break;
+                    case J2clArtifact.IGNORED_FILES:
+                        ignoreFiles = globPattern(content);
+                        break;
                     case J2clArtifact.PUBLIC_FILES:
                         publicFiles = globPattern(content);
                         break;
@@ -171,11 +171,11 @@ public final class GwtArchiveMakerTool {
         }
         this.manifest = manifest;
 
-        if(null == publicOutput) {
+        if (null == publicOutput) {
             throw new IllegalArgumentException("Required GWT module file (*.gwt.xml) missing");
         }
 
-        if(null != ignoreFiles) {
+        if (null != ignoreFiles) {
             this.removeIgnoredFiles(
                     ignoreFiles
             );
@@ -188,14 +188,14 @@ public final class GwtArchiveMakerTool {
             );
         }
 
-        if(null != publicFiles) {
+        if (null != publicFiles) {
             this.movePublicFiles(
                     publicFiles,
                     publicOutput
             );
         }
 
-        if(null != ignoreFiles) {
+        if (null != ignoreFiles) {
             this.removeIgnoredFiles(
                     ignoreFiles
             );
@@ -488,7 +488,7 @@ public final class GwtArchiveMakerTool {
 
                     // shaded class files will have a NULL content, dont write them back out.
                     final byte[] content = entry.content();
-                    if(null == content) {
+                    if (null == content) {
                         continue;
                     }
                     final JarEntry targetJarFileEntry = new JarEntry(entry.path());
