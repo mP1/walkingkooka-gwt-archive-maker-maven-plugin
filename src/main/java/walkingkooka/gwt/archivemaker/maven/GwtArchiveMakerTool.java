@@ -80,10 +80,20 @@ public final class GwtArchiveMakerTool {
                                     final Path archiveOut,
                                     final Path pom) throws Exception {
         if (false == archiveIn.toFile().exists()) {
-            throw new IllegalArgumentException("Unable to find input *.jar file: " + archiveIn.toAbsolutePath());
+            throw new IllegalArgumentException(
+                    "Unable to find input *.jar file: " +
+                            CharSequences.quoteAndEscape(
+                                    archiveIn.toAbsolutePath().toString()
+                            )
+            );
         }
         if (!pom.toFile().exists()) {
-            throw new IllegalArgumentException("Unable to find replacement POM.XML for built jar file: " + archiveIn.toAbsolutePath());
+            throw new IllegalArgumentException(
+                    "Unable to find replacement POM.XML for built jar file: " +
+                            CharSequences.quoteAndEscape(
+                                    archiveIn.toAbsolutePath().toString()
+                            )
+            );
         }
 
         return new GwtArchiveMakerTool(
